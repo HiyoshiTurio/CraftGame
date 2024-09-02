@@ -30,17 +30,18 @@ public class DebugPlayerDataText : MonoBehaviour
         }
     }
 
+    public void AddWood(int num)
+    {
+        PlayerDataController.Instance.AddResource(ItemType.Wood,num);
+    }
+
 
     void TestDataToPlayerData()
     {
         Resource[] obj = PlayerDataController.Instance.testPlayerData.testPlayerResourceData;
         foreach (var data in obj)
         {
-            //PlayerDataController.Instance.PlayerResourceData[data.itemType] += data.resourceCount;
-            if (PlayerDataController.Instance.PlayerResourceData.ContainsKey(data.itemType))
-                PlayerDataController.Instance.PlayerResourceData[data.itemType] += data.resourceCount;
-            else
-                PlayerDataController.Instance.PlayerResourceData.Add(data.itemType, data.resourceCount);
+            PlayerDataController.Instance.AddResource(data.itemType,data.resourceCount);
         }
     }
 }

@@ -11,16 +11,7 @@ public class PlayerDataController : MonoBehaviour
     private Dictionary<ItemType, int> _playerResourceData = new Dictionary<ItemType, int>();
     public string playerName;
     public static PlayerDataController Instance;
-
-    public Dictionary<ItemType, int> PlayerResourceData
-    {
-        get => _playerResourceData;
-        set
-        {
-            _playerResourceData = value;
-            OnUpdateResource?.Invoke(_playerResourceData);
-        }
-    }
+    public Dictionary<ItemType, int> PlayerResourceData { get => _playerResourceData; }
 
     public event Action<Dictionary<ItemType,int>> OnUpdateResource;
 
@@ -29,5 +20,14 @@ public class PlayerDataController : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         playerName = testPlayerData.testPlayerName;
+    }
+
+    public void AddResource(ItemType itemType, int num)
+    {
+        if (_playerResourceData.ContainsKey(itemType))
+            _playerResourceData[itemType] += num;
+        else
+            _playerResourceData.Add(itemType, num);
+        OnUpdateResource?.Invoke(_playerResourceData);
     }
 }
