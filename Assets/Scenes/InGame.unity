@@ -1191,7 +1191,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917063874}
         m_TargetAssemblyTypeName: DebugPlayerDataText, Assembly-CSharp
-        m_MethodName: TestCraft
+        m_MethodName: TestWoodCraft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
