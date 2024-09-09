@@ -5,6 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "TestEnemyData")]
 public class TestEnemyData : ScriptableObject
 {
-    public string enemyName;
-    public EnemyState enemyState;
+    [SerializeField] public EnemyState enemyState;
 }
