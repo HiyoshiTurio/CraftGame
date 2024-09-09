@@ -35,6 +35,16 @@ public class DebugPlayerDataText : MonoBehaviour
         PlayerDataController.Instance.AddResource(ItemType.Wood,num);
     }
 
+    public void TestSwordCraft()
+    {
+        Debug.Log(PlayerDataController.Instance.CraftItem(ItemType.Sword));
+    }
+
+    public void TestWoodCraft()
+    {
+        Debug.Log(PlayerDataController.Instance.CraftItem(ItemType.Wood));
+    }
+
 
     void TestDataToPlayerData()
     {
