@@ -25,6 +25,10 @@ public class PlayerDataController : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         playerName = testPlayerData.testPlayerName;
+        foreach (var variable in Enum.GetValues(typeof(ItemType)))
+        {
+            _playerResourceData.Add((ItemType)variable, 0);
+        }
     }
 
     public void AddResource(ItemType itemType, int num)
