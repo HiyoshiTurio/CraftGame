@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33290e8450d485041ad2e0f8573becb8, type: 3}
   m_Name: Test Enemy Data1
   m_EditorClassIdentifier: 
-  enemyName: enemy
   enemyState:
-    enemyName: 
+    enemyName: a
     Hp: 3
     Atk: 1
-    dropItem:
-    - itemType: 4
-      resourceCount: 1
+    dropItemList: 

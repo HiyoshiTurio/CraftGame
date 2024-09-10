@@ -17,12 +17,12 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    public void Attack()
+    protected virtual void Attack()
     {
         
     }
 
-    public void Move() //vecは向きのベクトル
+    private void Move() //vecは向きのベクトル
     {
         transform.position += new Vector3(Vec.x * moveSpeed, Vec.y * moveSpeed);
     }
