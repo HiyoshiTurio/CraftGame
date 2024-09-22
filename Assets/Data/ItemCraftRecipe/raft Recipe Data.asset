@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f1e89e54fa771438ed6089e2015c17, type: 3}
   m_Name: raft Recipe Data
   m_EditorClassIdentifier: 
-  CraftRecipe:
-  - CraftItem: 1
-    RequiredResources: 020000000400000004000000
+  CraftRecipeList:
   - CraftItem: 0
     RequiredResources: 020000000200000003000000
+  - CraftItem: 1
+    RequiredResources: 020000000400000004000000

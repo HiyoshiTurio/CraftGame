@@ -24,31 +24,31 @@ public class PlayerDataController : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-        playerName = testPlayerData.testPlayerName;
+
         foreach (var variable in Enum.GetValues(typeof(ItemType)))
         {
-            _playerResourceData.Add((ItemType)variable, 0);
+            if (!_playerResourceData.ContainsKey((ItemType)variable))
+                _playerResourceData.Add((ItemType)variable, 0);
         }
     }
 
-    public void AddResource(ItemType itemType, int num)
+    public void AddItem(ItemType itemType, int num)
     {
-        if (_playerResourceData.ContainsKey(itemType))
-            _playerResourceData[itemType] += num;
-        else
-            _playerResourceData.Add(itemType, num);
+        _playerResourceData[itemType] += num;
         OnUpdateResource?.Invoke(_playerResourceData);
     }
-    public bool CraftItem(ItemType CraftItem)
+
+    public bool CraftItem(ItemType CraftItem) //アイテムクラフトメソッド
     {
         if (CheckResourceForCraftingItem(CraftItem))
         {
-            int i = craftRecipeData.CraftRecipe.FindIndex(x => x.CraftItem == CraftItem);
+            int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == CraftItem);
             _playerResourceData[CraftItem]++;
-            foreach (var VARIABLE in craftRecipeData.CraftRecipe[i].RequiredResources)
+            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredResources)
             {
                 _playerResourceData[VARIABLE]--;
             }
+            OnUpdateResource?.Invoke(_playerResourceData);
             return true;
         }
         return false;
@@ -56,23 +56,26 @@ public class PlayerDataController : MonoBehaviour
 
     public bool CheckResourceForCraftingItem(ItemType craftItem) //クラフト用のリソースチェック
     {
-        int i = craftRecipeData.CraftRecipe.FindIndex(x => x.CraftItem == craftItem);
+        int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == craftItem);
         if (i == -1) return false;
 
-        if (craftRecipeData.CraftRecipe[i].CraftItem == craftItem)
+        if (craftRecipeData.CraftRecipeList[i].CraftItem == craftItem)
         {
             Dictionary<ItemType, int> needResource = new Dictionary<ItemType, int>();
-            foreach (var VARIABLE in craftRecipeData.CraftRecipe[i].RequiredResources)
+            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredResources)
             {
                 if (needResource.ContainsKey(VARIABLE)) needResource[VARIABLE]++;
                 else needResource.Add(VARIABLE, 1);
             }
+
             foreach (var VARIABLE in needResource)
             {
                 if (_playerResourceData[VARIABLE.Key] < VARIABLE.Value) return false;
             }
+
             return true;
         }
+
         return false;
     }
 }

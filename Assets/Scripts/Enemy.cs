@@ -25,7 +25,6 @@ public class Enemy : CharacterMove
         }
         else
         {
-            transform.up = _player.transform.position - transform.position;
             Vec = Vector3.zero;
         }
     }
@@ -34,7 +33,8 @@ public class Enemy : CharacterMove
     {
         float X = transform.position.x - _player.transform.position.x;
         float Y = transform.position.y - _player.transform.position.y;
-        if (X * X + Y * Y < findPlayerRange * findPlayerRange && X * X + Y * Y > findPlayerRangeMinValue * findPlayerRangeMinValue) return true;
+        if (X * X + Y * Y < findPlayerRange * findPlayerRange &&
+            X * X + Y * Y > findPlayerRangeMinValue * findPlayerRangeMinValue) return true;
         return false;
     }
 
