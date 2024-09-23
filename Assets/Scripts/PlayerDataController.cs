@@ -55,8 +55,8 @@ public class PlayerDataController : MonoBehaviour
 
     public bool CheckResourceForCraftingItem(ItemType craftItem) //クラフト用のリソースチェック
     {
-        int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == craftItem);
-        if (i == -1) return false;
+        int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == craftItem); 
+        if (i == -1) return false;　//対象のアイテムのレシピがなかった場合Falseを返す
 
         if (craftRecipeData.CraftRecipeList[i].CraftItem == craftItem)
         {

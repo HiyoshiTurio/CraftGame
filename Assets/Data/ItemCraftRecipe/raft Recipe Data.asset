@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftRecipeList:
   - CraftItem: 0
-    RequiredResources: 020000000200000003000000
+    RequiredItems: 020000000200000003000000
   - CraftItem: 1
-    RequiredResources: 020000000400000004000000
+    RequiredItems: 020000000400000004000000

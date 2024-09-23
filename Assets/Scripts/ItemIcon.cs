@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ItemIcon : MonoBehaviour
 {
-    [SerializeField] GameObject icon;
+    [SerializeField] private GameObject icon;
+    [SerializeField] private GameObject parentObj;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class ItemIcon : MonoBehaviour
 
     GameObject InstanceIcon(ItemType itemType) 
     {
-        GameObject newIcon = Instantiate(icon);
+        GameObject newIcon = Instantiate(icon, parentObj.transform);
         newIcon.GetComponent<ItemIconBase>().SetItemID(itemType);
         return newIcon;
     } 

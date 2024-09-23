@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ItemIconBase : MonoBehaviour
+public class ItemIconBase : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler
 {
-    public int itemID;
-
     public void SetItemID(ItemType itemType)
     {
-        itemID = (int)itemType;
-        GetComponent<SpriteRenderer>().sprite = DataManager.Instance.IconData.itemDatas[itemID].icon;
+        int itemID = (int)itemType;
+        GetComponent<Image>().sprite = DataManager.Instance.IconData.itemDatas[itemID].icon;
     }
+    public void OnPointerEnter(PointerEventData eventData){} //カーソルがアイコン内に入ったとき{ }
+    public void OnPointerExit(PointerEventData eventData){} //カーソルがアイコンから出たとき{ }
 }

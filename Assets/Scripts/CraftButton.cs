@@ -11,13 +11,12 @@ public class CraftButton : MonoBehaviour
 
     void Start()
     {
-        
         PlayerDataController playerDataController = PlayerDataController.Instance;
         for (int i = 0; i < playerDataController.craftRecipeData.CraftRecipeList.Count; i++)
         {
             GameObject obj = Instantiate(debugPrefab, parentObject.transform);
             obj.GetComponent<CraftButtonBase>().craftItemType = playerDataController.craftRecipeData.CraftRecipeList[i].CraftItem;
-            string textStr = "";
+            //string textStr = "";
             
             Dictionary<ItemType, int> resourceDict = new Dictionary<ItemType, int>();
             foreach (var item in playerDataController.craftRecipeData.CraftRecipeList[i].RequiredItems)
@@ -26,16 +25,13 @@ public class CraftButton : MonoBehaviour
                 else resourceDict.Add(item, 1);
             }
 
-            foreach (var item in resourceDict)
-            {
-                textStr += "\n" + item.Key.ToString() + ": " + item.Value.ToString();
-            }
+            // foreach (var item in resourceDict)
+            // {
+            //     textStr += "\n" + item.Key.ToString() + ": " + item.Value.ToString();
+            // }
 
-            textStr += " => " + playerDataController.craftRecipeData.CraftRecipeList[i].CraftItem.ToString();
-            obj.GetComponent<Text>().text = textStr;
+            //textStr += " => " + playerDataController.craftRecipeData.CraftRecipeList[i].CraftItem.ToString();
+            //obj.GetComponent<Text>().text = textStr;
         }
-        // GameObject obj = Instantiate(debugPrefab, parentObject.transform);
-        // obj.GetComponent<CraftButtonBase>().craftItemType = (ItemType)value;
-        // obj.GetComponent<Text>().text = ((ItemType)value).ToString();
     }
 }
