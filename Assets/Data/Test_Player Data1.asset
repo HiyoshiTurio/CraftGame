@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Test_Player Data1
   m_EditorClassIdentifier: 
   testPlayerName: 
-  testPlayerResourceData:
-  - itemType: 3
-    resourceCount: 2
+  testPlayerItemData:
   - itemType: 2
-    resourceCount: 5
-  - itemType: 0
-    resourceCount: 1
+    num: 1
+  - itemType: 3
+    num: 1
+  - itemType: 4
+    num: 1

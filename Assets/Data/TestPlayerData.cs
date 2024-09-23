@@ -7,5 +7,5 @@ using UnityEngine;
 public class TestPlayerData : ScriptableObject
 {
     public string testPlayerName;
-    [SerializeField] public Resource[] testPlayerResourceData;
+    [SerializeField] public PlayerItemData[] testPlayerItemData;
 }

@@ -13,7 +13,6 @@ public class CraftButton : MonoBehaviour
     {
         
         PlayerDataController playerDataController = PlayerDataController.Instance;
-        Debug.Log(playerDataController.craftRecipeData.CraftRecipeList.Count);
         for (int i = 0; i < playerDataController.craftRecipeData.CraftRecipeList.Count; i++)
         {
             GameObject obj = Instantiate(debugPrefab, parentObject.transform);
@@ -21,7 +20,7 @@ public class CraftButton : MonoBehaviour
             string textStr = "";
             
             Dictionary<ItemType, int> resourceDict = new Dictionary<ItemType, int>();
-            foreach (var item in playerDataController.craftRecipeData.CraftRecipeList[i].RequiredResources)
+            foreach (var item in playerDataController.craftRecipeData.CraftRecipeList[i].RequiredItems)
             {
                 if (resourceDict.ContainsKey(item)) resourceDict[item]++;
                 else resourceDict.Add(item, 1);

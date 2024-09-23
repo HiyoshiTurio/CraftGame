@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
 public class PlayerDataController : MonoBehaviour
 {
-    [SerializeField] public TestPlayerData testPlayerData; //デバッグ用データ
+    [SerializeField] public TestPlayerData playerItemData; //プレイヤー所持アイテムデータ
     [SerializeField] public CraftRecipeData craftRecipeData; //クラフト用データ
     private Dictionary<ItemType, int> _playerResourceData = new Dictionary<ItemType, int>();
     public string playerName;
@@ -44,7 +43,7 @@ public class PlayerDataController : MonoBehaviour
         {
             int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == CraftItem);
             _playerResourceData[CraftItem]++;
-            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredResources)
+            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredItems)
             {
                 _playerResourceData[VARIABLE]--;
             }
@@ -62,7 +61,7 @@ public class PlayerDataController : MonoBehaviour
         if (craftRecipeData.CraftRecipeList[i].CraftItem == craftItem)
         {
             Dictionary<ItemType, int> needResource = new Dictionary<ItemType, int>();
-            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredResources)
+            foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredItems)
             {
                 if (needResource.ContainsKey(VARIABLE)) needResource[VARIABLE]++;
                 else needResource.Add(VARIABLE, 1);
@@ -78,4 +77,10 @@ public class PlayerDataController : MonoBehaviour
 
         return false;
     }
+}
+[Serializable]
+public class PlayerItemData //プレイヤー所持アイテムデータ
+{
+    public ItemType itemType;
+    public int num;
 }

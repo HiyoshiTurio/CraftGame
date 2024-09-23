@@ -53,10 +53,10 @@ public class DebugPlayerData : MonoBehaviour
 
     void TestDataToPlayerData()
     {
-        Resource[] obj = PlayerDataController.Instance.testPlayerData.testPlayerResourceData;
+        PlayerItemData[] obj = PlayerDataController.Instance.playerItemData.testPlayerItemData;
         foreach (var data in obj)
         {
-            PlayerDataController.Instance.AddItem(data.itemType,data.resourceCount);
+            PlayerDataController.Instance.AddItem(data.itemType,data.num);
         }
     }
 }
