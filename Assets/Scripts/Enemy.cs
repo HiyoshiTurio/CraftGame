@@ -40,12 +40,7 @@ public class Enemy : CharacterMove
 
     void InAttackRange()
     {
-        Attack();
-    }
-
-    protected override void Attack()
-    {
-        //PlayerDataController.Instance.testPlayerData.
+        //Attack();
     }
 }
 [Serializable]
