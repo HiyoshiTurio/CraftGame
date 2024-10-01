@@ -15,6 +15,11 @@ public class Enemy : CharacterMove
         _player = GameObject.Find("Player").transform;
     }
 
+    private void Start()
+    {
+        InGameManager.Instance.AddCharacterTransforms(this.transform);
+    }
+
     private void Update()
     {
         if (CheckPlayerInFindRange())
@@ -41,6 +46,11 @@ public class Enemy : CharacterMove
     void InAttackRange()
     {
         //Attack();
+    }
+
+    public override void DamageAction()
+    {
+        Debug.Log($"Enemy Hit!");
     }
 }
 [Serializable]
