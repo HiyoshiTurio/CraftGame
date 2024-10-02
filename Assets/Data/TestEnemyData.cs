@@ -5,5 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "TestEnemyData")]
 public class TestEnemyData : ScriptableObject
 {
-    public EnemyState enemyState;
+    public string enemyName;
+    public int Hp;
+    public int Atk;
+    public List<ItemType> dropItemList;
 }

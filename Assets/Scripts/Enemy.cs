@@ -2,14 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Enemy : CharacterMove
+public class Enemy : CharacterBase
 {
     [SerializeField] private TestEnemyData enemyData;
     [SerializeField] private float findPlayerRange = 5f;
     [SerializeField] private float findPlayerRangeMinValue = 1f;
     [SerializeField] private float attackRange = 2f;
+    [SerializeField] private Text healthText;
     private Transform _player;
+
+    public int enemyHP
+    {
+        get { return enemyData.Hp; }
+        set
+        {
+            enemyData.Hp = value;
+            healthText.text = enemyData.Hp.ToString();
+        }
+    }
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -47,17 +59,9 @@ public class Enemy : CharacterMove
     {
         //Attack();
     }
-
-    public override void DamageAction()
+    public override void DamageAction(int damage)
     {
         Debug.Log($"Enemy Hit!");
+        enemyHP -= damage;
     }
-}
-[Serializable]
-public class EnemyState
-{
-    public string enemyName;
-    public int Hp;
-    public int Atk;
-    public List<ItemType> dropItemList;
 }

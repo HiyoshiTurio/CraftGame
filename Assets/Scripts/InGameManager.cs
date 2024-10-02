@@ -42,11 +42,11 @@ public class InGameManager : MonoBehaviour
     public void CheckHitAttack(Transform attackCharaTransform, int damage)
     {
         Vector2 direction = (_camera.ScreenToWorldPoint(Input.mousePosition) - attackCharaTransform.position).normalized;
+        float range = 1; //攻撃範囲
+        float angleRange = 60; //攻撃角度範囲
         for(int i = 0; i < _characterTransforms.Count; i++)
         {
             Transform targetTransform = _characterTransforms[i];
-            float range = 1; //攻撃範囲
-            float angleRange = 60; //
             if ( targetTransform != attackCharaTransform)
             {
                 if (attackCharaTransform.position.x -  attackCharaTransform.position.x * attackCharaTransform.position.x -
@@ -58,7 +58,7 @@ public class InGameManager : MonoBehaviour
                     float dot = Vector2.Dot(direction.normalized, attackCharaTransform.position);
                     if (dot > Mathf.Cos(angleRange))
                     {
-                        targetTransform.GetComponent<CharacterMove>().DamageAction();
+                        targetTransform.GetComponent<CharacterBase>().DamageAction(damage);
                     }
                 }
                 else
