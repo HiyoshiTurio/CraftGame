@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class PlayerInput : CharacterBase
 {
     private Camera _camera;
-    [SerializeField] GameObject _enemy;
+    [SerializeField] private GameObject _enemy; //仮Enemy
     InGameManager _inGameManager;
 
     private void Start()

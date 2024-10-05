@@ -13,7 +13,7 @@ public class Enemy : CharacterBase
     [SerializeField] private Text healthText;
     private Transform _player;
 
-    public int enemyHP
+    public int EnemyHp
     {
         get { return enemyData.Hp; }
         set
@@ -62,6 +62,6 @@ public class Enemy : CharacterBase
     public override void DamageAction(int damage)
     {
         Debug.Log($"Enemy Hit!");
-        enemyHP -= damage;
+        EnemyHp -= damage;
     }
 }
