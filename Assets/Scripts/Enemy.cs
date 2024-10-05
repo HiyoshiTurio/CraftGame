@@ -18,6 +18,7 @@ public class Enemy : CharacterBase
     }
 
     public int enemyHP
+    public int EnemyHp
     {
         get { return enemyData.Hp; }
         set
@@ -64,6 +65,11 @@ public class Enemy : CharacterBase
     }
     public override void DamageAction(int damage)
     {
+<<<<<<< HEAD
         enemyHP -= damage;
+=======
+        Debug.Log($"Enemy Hit!");
+        EnemyHp -= damage;
+>>>>>>> 7048c80cb5966b640f297e0c05fd0b34828b1940
     }
 }
