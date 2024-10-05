@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
 {
-    protected float MoveSpeed = 1;
+    protected InGameManager InGameManager;
+    protected float MoveSpeed = 0.5f;
     protected bool IsAttackable = true;
     protected float AttackCoolTime = 6.0f;
     private float _timer = 0.0f;
@@ -35,6 +36,11 @@ public class CharacterBase : MonoBehaviour
     private void Move() //vecは向きのベクトル
     {
         transform.position += new Vector3(Vec.x * MoveSpeed, Vec.y * MoveSpeed);
+    }
+
+    private void Start()
+    {
+        InGameManager = InGameManager.Instance;
     }
 
     private void FixedUpdate()

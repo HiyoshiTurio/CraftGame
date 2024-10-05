@@ -11,12 +11,12 @@ public class PlayerInput : CharacterBase
     [SerializeField] GameObject _enemy;
     InGameManager _inGameManager;
 
-    private void Start()
+    private void Awake()
     {
         _camera = Camera.main;
         _inGameManager = InGameManager.Instance;
-        _inGameManager.playerTransform = transform;
-        InGameManager.Instance.AddCharacterTransforms(this.transform);
+        _inGameManager.AddCharacterTransforms(this.transform);
+        _inGameManager.playerTransform = this.transform;
     }
 
     private void Update()

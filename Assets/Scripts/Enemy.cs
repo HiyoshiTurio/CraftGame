@@ -11,7 +11,11 @@ public class Enemy : CharacterBase
     [SerializeField] private float findPlayerRangeMinValue = 1f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private Text healthText;
-    private Transform _player;
+
+    private Transform Player
+    {
+        get { return InGameManager.Instance.playerTransform; }
+    }
 
     public int enemyHP
     {
@@ -24,7 +28,6 @@ public class Enemy : CharacterBase
     }
     private void Awake()
     {
-        _player = GameObject.Find("Player").transform;
     }
 
     private void Start()
@@ -36,8 +39,8 @@ public class Enemy : CharacterBase
     {
         if (CheckPlayerInFindRange())
         {
-            transform.up = _player.transform.position - transform.position;
-            Vector3 tmp = _player.transform.position - transform.position;
+            transform.up = Player.transform.position - transform.position;
+            Vector3 tmp = Player.transform.position - transform.position;
             Vec = tmp;
         }
         else
@@ -48,8 +51,8 @@ public class Enemy : CharacterBase
 
     bool CheckPlayerInFindRange()
     {
-        float X = transform.position.x - _player.transform.position.x;
-        float Y = transform.position.y - _player.transform.position.y;
+        float X = transform.position.x - Player.position.x;
+        float Y = transform.position.y - Player.position.y;
         if (X * X + Y * Y < findPlayerRange * findPlayerRange &&
             X * X + Y * Y > findPlayerRangeMinValue * findPlayerRangeMinValue) return true;
         return false;
@@ -61,7 +64,6 @@ public class Enemy : CharacterBase
     }
     public override void DamageAction(int damage)
     {
-        Debug.Log($"Enemy Hit!");
         enemyHP -= damage;
     }
 }

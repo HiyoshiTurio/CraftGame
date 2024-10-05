@@ -25,7 +25,6 @@ public class InGameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         _camera = Camera.main;
     }
 
