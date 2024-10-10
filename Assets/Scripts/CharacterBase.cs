@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterBase : MonoBehaviour
 {
     protected InGameManager InGameManager;
-    protected float MoveSpeed = 0.5f;
+    protected float MoveSpeed = 0.1f;
     protected bool IsAttackable = true;
     protected float AttackCoolTime = 6.0f;
     private float _timer = 0.0f;
