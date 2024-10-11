@@ -12,9 +12,16 @@ public class Enemy : CharacterBase
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private Text healthText;
 
+<<<<<<< HEAD
     private Transform Player => InGameManager.Instance.playerTransform; 
     
 
+=======
+    private Transform Player
+    {
+        get { return InGameManager.Instance.playerTransform; }
+    }
+>>>>>>> 9b7b78dc161f08198b3a38dc9a93c0752b0ae3eb
     public int EnemyHp
     {
         get { return enemyStateData.Hp; }
@@ -60,6 +67,10 @@ public class Enemy : CharacterBase
     }
     public override void DamageAction(int damage)
     {
+<<<<<<< HEAD
+=======
+        Debug.Log($"Enemy Hit!");
+>>>>>>> 9b7b78dc161f08198b3a38dc9a93c0752b0ae3eb
         EnemyHp -= damage;
     }
 }
