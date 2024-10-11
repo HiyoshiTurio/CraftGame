@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class PlayerInput : CharacterBase
 {
-    private Camera _camera;
-    [SerializeField] private GameObject _enemy; //仮Enemy
+    [SerializeField] private PlayerStateData playerStateData;
     InGameManager _inGameManager;
 
     private void Awake()
     {
-        _camera = Camera.main;
         _inGameManager = InGameManager.Instance;
         _inGameManager.AddCharacterTransforms(this.transform);
         _inGameManager.playerTransform = this.transform;
+        MoveSpeed = playerStateData.moveSpeed;
     }
 
     private void Update()

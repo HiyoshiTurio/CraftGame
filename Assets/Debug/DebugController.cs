@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DefaultExecutionOrder(-101)]
-public class DebugPlayerData : MonoBehaviour
+public class DebugController : MonoBehaviour
 {
     [SerializeField] private Text debugText;
 
@@ -53,7 +53,7 @@ public class DebugPlayerData : MonoBehaviour
 
     void TestDataToPlayerData()
     {
-        PlayerItemData[] obj = PlayerDataController.Instance.playerItemData.testPlayerItemData;
+        PlayerItemData[] obj = PlayerDataController.Instance.playerResourceData.testPlayerItemData;
         foreach (var data in obj)
         {
             PlayerDataController.Instance.AddItem(data.itemType,data.num);

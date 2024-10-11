@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99aebba7a6a364a479c812e2e434485a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: e5e89ba9f3066e54b8d5f04a18a784f7, type: 2}
+  enemyStateData: {fileID: 11400000, guid: e5e89ba9f3066e54b8d5f04a18a784f7, type: 2}
   findPlayerRange: 5
   findPlayerRangeMinValue: 1
   attackRange: 5
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bd8889572d496409dd54f38ae81dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerItemData: {fileID: 11400000, guid: 359907d55c0043647b1ab0aa1bfccccc, type: 2}
+  playerResourceData: {fileID: 0}
   craftRecipeData: {fileID: 11400000, guid: 2f71d03ea6b1aeb4dacc1afa091623b3, type: 2}
   playerName: 
 --- !u!4 &1534849187
@@ -928,6 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 762749722}
+  playerStateData: {fileID: 11400000, guid: ad2561acea9fc974395f9619304831d3, type: 2}
 --- !u!212 &1688385239
 SpriteRenderer:
   m_ObjectHideFlags: 0

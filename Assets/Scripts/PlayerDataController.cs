@@ -6,15 +6,15 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class PlayerDataController : MonoBehaviour
 {
-    [SerializeField] public TestPlayerData playerItemData; //プレイヤー所持アイテムデータ
+    [SerializeField] public PlayerResourceData playerResourceData; //プレイヤー所持アイテムデータ
     [SerializeField] public CraftRecipeData craftRecipeData; //クラフト用データ
-    private Dictionary<ItemType, int> _playerResourceData = new Dictionary<ItemType, int>();
+    private Dictionary<ItemType, int> _playerResource = new Dictionary<ItemType, int>();
     public string playerName;
     public static PlayerDataController Instance;
 
     public Dictionary<ItemType, int> PlayerResourceData
     {
-        get => _playerResourceData;
+        get => _playerResource;
     }
 
     public event Action<Dictionary<ItemType, int>> OnUpdateResource;
@@ -26,15 +26,15 @@ public class PlayerDataController : MonoBehaviour
 
         foreach (var variable in Enum.GetValues(typeof(ItemType)))
         {
-            if (!_playerResourceData.ContainsKey((ItemType)variable))
-                _playerResourceData.Add((ItemType)variable, 0);
+            if (!_playerResource.ContainsKey((ItemType)variable))
+                _playerResource.Add((ItemType)variable, 0);
         }
     }
 
     public void AddItem(ItemType itemType, int num)
     {
-        _playerResourceData[itemType] += num;
-        OnUpdateResource?.Invoke(_playerResourceData);
+        _playerResource[itemType] += num;
+        OnUpdateResource?.Invoke(_playerResource);
     }
 
     public bool CraftItem(ItemType CraftItem) //アイテムクラフトメソッド
@@ -42,12 +42,12 @@ public class PlayerDataController : MonoBehaviour
         if (CheckResourceForCraftingItem(CraftItem))
         {
             int i = craftRecipeData.CraftRecipeList.FindIndex(x => x.CraftItem == CraftItem);
-            _playerResourceData[CraftItem]++;
+            _playerResource[CraftItem]++;
             foreach (var VARIABLE in craftRecipeData.CraftRecipeList[i].RequiredItems)
             {
-                _playerResourceData[VARIABLE]--;
+                _playerResource[VARIABLE]--;
             }
-            OnUpdateResource?.Invoke(_playerResourceData);
+            OnUpdateResource?.Invoke(_playerResource);
             return true;
         }
         return false;
@@ -69,7 +69,7 @@ public class PlayerDataController : MonoBehaviour
 
             foreach (var VARIABLE in needResource)
             {
-                if (_playerResourceData[VARIABLE.Key] < VARIABLE.Value) return false;
+                if (_playerResource[VARIABLE.Key] < VARIABLE.Value) return false;
             }
 
             return true;
