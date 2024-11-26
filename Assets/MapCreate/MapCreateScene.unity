@@ -243,8 +243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936a32dbb2bc6d54eb535aaac3b56f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomData: {fileID: 11400000, guid: 7e46f87db0f990b4a9ae74697ad2c806, type: 2}
+  roomData: {fileID: 11400000, guid: 7e46f87db0f990b4a9ae74697ad2c806, type: 2}
+  areaData: {fileID: 11400000, guid: e6eeabc29c63edf408c1c8694be23d97, type: 2}
   _tilePrefab: {fileID: 6142462581346989885, guid: af07021cb558d7f4ca1390e83c16f365, type: 3}
+  _roomRandomX: 3
+  _roomRandomY: 3
+  _roomMinSize: 5
 --- !u!4 &1181517272
 Transform:
   m_ObjectHideFlags: 0
