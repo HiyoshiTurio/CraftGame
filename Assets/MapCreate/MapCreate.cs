@@ -16,11 +16,17 @@ public class MapCreate : MonoBehaviour
 
     private void Start()
     {
-        createArea(areaData.area);
-        CreateRoomByArea(areaData.area);
+        Area area1 = new Area();
+        Area area2 = new Area();
+        (area1, area2) = DivideArea(areaData.area);
+        
+        InstanceArea(area1);
+        InstanceArea(area2);
+        InstanceRoom(CreateRoomByArea(area1));
+        InstanceRoom(CreateRoomByArea(area2));
     }
 
-    void createArea(Area area)
+    void InstanceArea(Area area)
     {
         for (int i = 0; i < area.width; i++)
         {
@@ -33,7 +39,18 @@ public class MapCreate : MonoBehaviour
             }
         }
     }
-    void CreateRoomByArea(Area area)
+
+    void InstanceRoom(Room room)
+    {
+        for (int i = 0; i < room.width; i++)
+        {
+            for (int j = 0; j < room.height; j++)
+            {
+                Instantiate(_tilePrefab, new Vector3(room.x + i, room.y + j, 0), Quaternion.identity);
+            }
+        }
+    }
+    Room CreateRoomByArea(Area area)
     {
         Room room = new Room();
         Random random = new Random();
@@ -50,16 +67,10 @@ public class MapCreate : MonoBehaviour
         room.width = roomWidth;
         room.height = roomHeight;
         
-        for (int i = 0; i < room.width; i++)
-        {
-            for (int j = 0; j < room.height; j++)
-            {
-                Instantiate(_tilePrefab, new Vector3(room.x + i, room.y + j, 0), Quaternion.identity);
-            }
-        }
+        return room;
     }
 
-    bool CheckSizesForDividedAreas(Area area, int size) //room(調べたい部屋) size(部屋の最小サイズ)
+    bool CheckSizesForDividedAreas(Area area, int size) //room(調べたいエリア) size(エリアの最小サイズ)
     {
         if (area.width / 3 > size && area.height / 3 > size)
         {
@@ -67,19 +78,42 @@ public class MapCreate : MonoBehaviour
         }
         return false;
     }
-    (Area,Area) DivideArea(Area room) //room(分けたい部屋)
+    (Area,Area) DivideArea(Area area) //room(分けたいエリア)
     {
         Area area1 = new Area();
         Area area2 = new Area();
-        if (room.width > room.height) //横長の部屋だった場合縦に切る
+        Random random = new Random();
+        int randomNum = random.Next(-2, 2);
+        if (area.width > area.height) //横長のエリアだった場合縦に切る(area1が左、area2が右)
         {
+            area1.x = area.x;
+            area1.width = area.width / 2 + randomNum;
+            area1.y = area.y;
+            area1.height = area.height;
             
+            area2.x = area.x + area1.width;
+            area2.width = area.width - area1.width;
+            area2.y = area.y;
+            area2.height = area.height;
         }
-        else //縦長の部屋だった場合横に切る
+        else //縦長のエリアだった場合横に切る(area1が下、area2が上)
         {
+            area1.x = area.x;
+            area1.width = area.width;
+            area1.y = area.y;
+            area1.height = area.height / 2 + randomNum;
             
+            area2.x = area.x;
+            area2.width = area.width;
+            area2.y = area.y + area1.height;
+            area2.height = area.height - area1.height;
         }
         return (area1, area2);
+    }
+
+    void CreateRoad(Room room1, Room room2)
+    {
+        
     }
 }
 //AreaとRoomの構造体
@@ -96,6 +130,15 @@ public struct Room
 //Room: 部屋の座標とサイズ
 [Serializable]
 public struct Area
+{
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+}
+
+[Serializable]
+public struct Road
 {
     public int x;
     public int y;
