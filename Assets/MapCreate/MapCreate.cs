@@ -50,6 +50,17 @@ public class MapCreate : MonoBehaviour
             }
         }
     }
+    
+    void InstanceRoad(Road road)
+    {
+        for (int i = 0; i < road.width; i++)
+        {
+            for (int j = 0; j < road.height; j++)
+            {
+                Instantiate(_tilePrefab, new Vector3(road.x + i, road.y + j, 0), Quaternion.identity);
+            }
+        }
+    }
     Room CreateRoomByArea(Area area)
     {
         Room room = new Room();
